@@ -1,0 +1,11 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Configuration files
+.env
+config.json
+
+# Compiled binaries
+*.exe
+*.out
