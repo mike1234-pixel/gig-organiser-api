@@ -32,7 +32,7 @@ To run Gig Organiser, follow these steps:
    docker-compose up
    ```
 
-4. Once the containers are running, you can access Gig Organiser at http://localhost:3000/.
+4. Once the containers are running, you can access Gig Organiser at http://localhost:3002/.
 
 ## Stopping the application
 
