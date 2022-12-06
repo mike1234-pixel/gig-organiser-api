@@ -45,3 +45,27 @@ func CreateUser(c *fiber.Ctx) error {
 
 	return c.Status(200).JSON(user)
 }
+
+func GetUser(c *fiber.Ctx) error {
+	// Get the user's email and password from the request
+	email := c.FormValue("email")
+	password := c.FormValue("password")
+
+	// Find the user in the database by their email
+	user := models.User{}
+	if err := database.DB.Db.Where("email = ?", email).First(&user).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"message": "User not found",
+		})
+	}
+
+	// Compare the user's password with the hashed password in the database
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"message": "Incorrect password",
+		})
+	}
+
+	// Return the user if the password is correct
+	return c.Status(200).JSON(user)
+}
