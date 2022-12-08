@@ -14,6 +14,18 @@ func ListJobs(c *fiber.Ctx) error {
 	return c.Status(200).JSON(jobs)
 }
 
+func GetJobs(c *fiber.Ctx) error {
+	// Parse the userID parameter from the URL query string
+	userID := c.Query("userID")
+
+	// Query the jobs table for jobs with the given userID
+	jobs := []models.Job{}
+	database.DB.Db.Where("user_id = ?", userID).Find(&jobs)
+
+	// Return the list of jobs as a JSON array
+	return c.JSON(jobs)
+}
+
 func CreateJob(c *fiber.Ctx) error {
 	job := new(models.Job)
 	if err := c.BodyParser(job); err != nil {

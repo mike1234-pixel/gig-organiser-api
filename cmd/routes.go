@@ -14,14 +14,6 @@ func setupRoutes(app *fiber.App) {
 		AllowCredentials: true,
 	}))
 
-	app.Get("/jobs", handlers.ListJobs)
-
-	app.Post("/job", handlers.CreateJob)
-
-	app.Delete("/jobs/:id", handlers.DeleteJob)
-
-	app.Put("/jobs/:id", handlers.UpdateJob)
-
 	// users
 
 	app.Get("/users", handlers.ListUsers)
@@ -29,4 +21,16 @@ func setupRoutes(app *fiber.App) {
 	app.Post("/create-user", handlers.CreateUser)
 
 	app.Post("/user", handlers.GetUser)
+
+	// jobs
+
+	app.Get("/all-jobs", handlers.ListJobs)
+
+	app.Get("/jobs", handlers.GetJobs)
+
+	app.Post("/job", handlers.CreateJob)
+
+	app.Delete("/jobs/:id", handlers.DeleteJob)
+
+	app.Put("/jobs/:id", handlers.UpdateJob)
 }
