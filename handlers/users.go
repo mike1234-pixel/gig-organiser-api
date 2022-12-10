@@ -69,3 +69,19 @@ func GetUser(c *fiber.Ctx) error {
 	// Return the user if the password is correct
 	return c.Status(200).JSON(user)
 }
+
+func DeleteUser(c *fiber.Ctx) error {
+	// Get the user's ID from the request parameters
+	userID := c.Params("id")
+
+	// Delete the user with the specified ID from the database
+	if err := database.DB.Db.Where("id = ?", userID).Delete(&models.User{}).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": err.Error(),
+		})
+	}
+
+	return c.Status(200).JSON(fiber.Map{
+		"message": "User deleted successfully",
+	})
+}

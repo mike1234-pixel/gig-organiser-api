@@ -22,6 +22,8 @@ func setupRoutes(app *fiber.App) {
 
 	app.Post("/user", handlers.GetUser)
 
+	app.Delete("/user/:id", handlers.DeleteUser)
+
 	// jobs
 
 	app.Get("/all-jobs", handlers.ListJobs)
