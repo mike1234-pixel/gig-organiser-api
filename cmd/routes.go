@@ -35,4 +35,16 @@ func setupRoutes(app *fiber.App) {
 	app.Delete("/jobs/:id", handlers.DeleteJob)
 
 	app.Put("/jobs/:id", handlers.UpdateJob)
+
+	// actions
+
+	app.Get("/all-actions", handlers.ListActions)
+
+	app.Get("/actions", handlers.GetActions)
+
+	app.Post("/action", handlers.CreateAction)
+
+	app.Put("/actions/:id", handlers.UpdateAction)
+
+	app.Delete("/actions/:id", handlers.DeleteAction)
 }

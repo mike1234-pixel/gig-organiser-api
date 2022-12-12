@@ -14,10 +14,21 @@ type User struct {
 
 type Job struct {
 	gorm.Model
-	UserID       uint   `gorm:"primary_key" json:"userid"`
-	Title        string `json:"title"`
-	Organisation string `json:"organisation"`
-	Description  string `json:"description"`
-	Priority     int    `json:"priority"`
-	Status       string `json:"status"`
+	UserID       uint     `gorm:"primary_key" json:"userid"`
+	Title        string   `json:"title"`
+	Organisation string   `json:"organisation"`
+	Description  string   `json:"description"`
+	Priority     int      `json:"priority"`
+	Status       string   `json:"status"`
+	Actions      []Action `gorm:"ForeignKey:JobID" json:"actions"`
+}
+
+type Action struct {
+	gorm.Model
+	UserID      uint   `gorm:"primary_key" json:"userid"`
+	JobID       uint   `json:"jobid"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	CompleteBy  string `json:"complete_by"`
+	Completed   bool   `json:"completed"`
 }
