@@ -7,10 +7,9 @@ import (
 )
 
 func setupRoutes(app *fiber.App) {
-	// Use the CORS middleware to enable CORS for localhost:3000 and localhost:3001
+	// Use the CORS middleware to enable CORS for fe
 	app.Use(cors.New(cors.Config{
-		// Use the correct syntax to assign a value to the AllowOrigins field
-		AllowOrigins:     "http://localhost:3000, http://localhost:3001",
+		AllowOrigins:     "https://main.d283u7qcw25b1m.amplifyapp.com",
 		AllowCredentials: true,
 	}))
 
